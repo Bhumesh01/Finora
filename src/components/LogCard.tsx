@@ -1,5 +1,6 @@
 import { useState } from "react";
-type TrannsactionType = {
+import Modal from "./Modal";
+export type TransactionType = {
     date: string,
     category: 'Salary'|'Groceries'|'Rent'|'Travel'|'Health'|"Others",
     amount: string,
@@ -7,9 +8,11 @@ type TrannsactionType = {
 }
 
 export default function LogCard(){
-    const [transactions, setTransactions] = useState<TrannsactionType[]>([]);
+    const [transactions, setTransactions] = useState<TransactionType[]>([]);
+    const [modal, setModal] = useState<boolean>(false);
     return(
         <div className="w-[98%] px-2 py-2 flex flex-col rounded-2xl border border-gray-400 gap-5">
+            {modal&&<Modal setTransactions={setTransactions} setModal={setModal}></Modal>}
             <h1 className="text-2xl font-semibold">Recent Transactions</h1>
             <div className="flex justify-between mt-2">
                 <input className="border rounded-md px-2 py-1 w-[55%] text-gray-400" type="text" placeholder="Search"></input>
@@ -20,7 +23,7 @@ export default function LogCard(){
                     <select className="px-4 py-2 rounded-xl font-medium outline-none cursor-pointer border border-gray-400">
                         <option>Sort: Date</option>
                     </select>
-                    <button className="bg-blue-500 hover:bg-blue-600 transition-all text-white px-4 py-2 rounded-xl font-medium outline-none cursor-pointer">
+                    <button className="bg-blue-500 hover:bg-blue-600 transition-all text-white px-4 py-2 rounded-xl font-medium outline-none cursor-pointer" onClick={()=>setModal(true)}>
                         Add Transaction
                     </button>
                 </div>
