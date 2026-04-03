@@ -1,4 +1,5 @@
 import Card from "./components/Card"
+import LogCard from "./components/LogCard"
 import Navbar from "./components/Navbar"
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
         <Card label="Total Balance" color="blue" amount="₹ 50000" note="Increased Last Month"></Card>
         <Card label="Total Expenses" color="yellow" amount="₹ 20000" note="Increased Last Month"></Card>
       </div>
+      <LogCard></LogCard>
     </div>
   )
 }
