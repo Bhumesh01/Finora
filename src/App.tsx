@@ -14,7 +14,8 @@ export type TransactionType = {
 
 function App() {
   const [transactions, setTransactions] = useState<TransactionType[]>([]);
-  const [loaded, setLoaded] = useState(false);
+  const [loaded, setLoaded] = useState<boolean>(false);
+  const [admin, setIsAdmin] = useState<boolean>(false);
 
   useEffect(()=>{
     try {
@@ -40,10 +41,10 @@ function App() {
   }, [transactions, loaded]);
   return (
     <div className="h-screen flex flex-col gap-2">
-      <Navbar></Navbar>
+      <Navbar setIsAdmin={setIsAdmin}></Navbar>
       <InsightCard transactions={transactions}></InsightCard>
       <Chart transactions={transactions}></Chart>
-      <LogCard transactions={transactions} setTransactions={setTransactions}></LogCard>
+      <LogCard transactions={transactions} setTransactions={setTransactions} admin={admin}></LogCard>
     </div>
   )
 }

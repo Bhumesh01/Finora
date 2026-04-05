@@ -3,7 +3,8 @@ import Modal from "./Modal";
 import type{ TransactionType } from "../App";
 export default function LogCard(props:{
     transactions: TransactionType[], 
-    setTransactions: React.Dispatch<React.SetStateAction<TransactionType[]>>
+    setTransactions: React.Dispatch<React.SetStateAction<TransactionType[]>>,
+    admin: boolean
 }){
     const transactions = props.transactions;
     let filtered = [...transactions];
@@ -61,9 +62,11 @@ export default function LogCard(props:{
                         <option>This Month</option>
                         <option>Last 7 Days</option>
                     </select>
-                    <button className="bg-blue-500 hover:bg-blue-600 transition-all text-white px-4 py-2 rounded-xl font-medium outline-none cursor-pointer" onClick={()=>setModal(true)}>
-                        Add Transaction
-                    </button>
+                    {props.admin&&(
+                        <button className="bg-blue-500 hover:bg-blue-600 transition-all text-white px-4 py-2 rounded-xl font-medium outline-none cursor-pointer" onClick={()=>setModal(true)}>
+                            Add Transaction
+                        </button>
+                    )}
                 </div>
             </div>
             <div className="rounded-xl overflow-hidden border border-gray-500">
