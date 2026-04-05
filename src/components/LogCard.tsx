@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Modal from "./Modal";
 export type TransactionType = {
     date: string,
@@ -10,12 +10,28 @@ export type TransactionType = {
 export default function LogCard(){
     const [transactions, setTransactions] = useState<TransactionType[]>([]);
     const [modal, setModal] = useState<boolean>(false);
+    useEffect(()=>{
+        try {
+            const raw = localStorage.getItem("transactions");
+            const parsed = raw ? JSON.parse(raw) : [];
+            
+            if (Array.isArray(parsed)) {
+                setTransactions(parsed);
+            } else {
+                console.warn("Invalid data in localStorage, resetting...");
+                setTransactions([]);
+            }
+        } catch (err) {
+            console.error("Parsing error:", err);
+            setTransactions([]);
+        }
+    }, [])
     return(
-        <div className="w-[98%] px-2 py-2 flex flex-col rounded-2xl border border-gray-400 gap-5">
-            {modal&&<Modal setTransactions={setTransactions} setModal={setModal}></Modal>}
+        <div className="px-2 py-2 flex flex-col rounded-2xl border border-gray-400 gap-5 justify-center mx-10">
+            {modal&&<Modal setTransactions={setTransactions} setModal={setModal} transactions={transactions}></Modal>}
             <h1 className="text-2xl font-semibold">Recent Transactions</h1>
             <div className="flex justify-between mt-2">
-                <input className="border rounded-md px-2 py-1 w-[55%] text-gray-400" type="text" placeholder="Search"></input>
+                <input className="border rounded-md px-2 py-1 w-[55%] text-gray-600" type="text" placeholder="Search"></input>
                 <div className="flex gap-5">
                     <select className="px-4 py-2 rounded-xl font-medium outline-none cursor-pointer border border-gray-400">
                         <option>All</option>

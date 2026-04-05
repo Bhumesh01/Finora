@@ -39,14 +39,14 @@ export default function Chart(){
         <div className="flex flex-wrap justify-between gap-6 w-full px-5">
             <div className="bg-white rounded-xl shadow p-4 flex-1">
               <h2 className="text-lg font-semibold mb-2 text-center">Balance Trend</h2>
-              <div className="flex items-center justify-center">
+              <div className="h-62.5 flex items-center justify-center">
                 <Line data={data1} />
               </div>
             </div>
 
             <div className="bg-white rounded-xl shadow p-4 flex-1">
               <h2 className="text-lg font-semibold mb-2 text-center">Expense Breakdown</h2>
-              <div className="flex items-center justify-center">
+              <div className="h-62.5 flex items-center justify-center">
                 <Pie data={data2}/>
               </div>
             </div>

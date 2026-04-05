@@ -2,7 +2,8 @@ import { useRef, useState } from "react"
 import type { TransactionType } from "./LogCard"
 interface ModalInterface{
     setTransactions: React.Dispatch<React.SetStateAction<TransactionType[]>>,
-    setModal: React.Dispatch<React.SetStateAction<boolean>>
+    setModal: React.Dispatch<React.SetStateAction<boolean>>,
+    transactions: TransactionType[]
 }
 export default function Modal(props: ModalInterface){
     const dateRef = useRef<HTMLInputElement>(null);
@@ -27,7 +28,9 @@ export default function Modal(props: ModalInterface){
             amount: `₹ ${amount}`,
             type: typeTransaction as TransactionType["type"]
         }
-        props.setTransactions((prev)=>[...prev, new_T]);
+        const updated = [...props.transactions, new_T];
+        props.setTransactions(updated);
+        localStorage.setItem("transactions", JSON.stringify(updated));
         setMessage("Transaction Added Successfully")
         setTimeout(() => {
             props.setModal(false);
