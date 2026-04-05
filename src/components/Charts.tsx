@@ -7,6 +7,9 @@ import type{ TransactionType } from "../App";
 
 export default function Chart( props: {transactions: TransactionType[]}){
   const transactions = props.transactions;
+  if (transactions.length === 0) {
+    return <div className="text-center text-gray-500">No data for charts</div>
+  }
   const sorted = [...transactions].sort(
     (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
   );

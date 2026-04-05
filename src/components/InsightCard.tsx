@@ -4,7 +4,7 @@ export default function InsightCard(props:{transactions:TransactionType[]}){
     const { transactions } = props;
     if (transactions.length === 0) {
         return (
-            <div className="px-5 my-5 text-gray-400">
+            <div className="px-5 my-5 text-gray-500 text-center">
                 No data available
             </div>
         );

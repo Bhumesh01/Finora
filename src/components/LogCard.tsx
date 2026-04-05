@@ -77,7 +77,7 @@ export default function LogCard(props:{
                         <div>Type</div>
                     </div>
                 {transactions.length===0?(
-                    <div className="text-center py-6 text-gray-400">
+                    <div className="text-center py-6 text-gray-500">
                         No Transactions Yet
                     </div>
                 ):(
