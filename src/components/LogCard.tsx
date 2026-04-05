@@ -76,7 +76,7 @@ export default function LogCard(props:{
                         <div>Amount</div>
                         <div>Type</div>
                     </div>
-                {transactions.length===0?(
+                {filtered.length===0?(
                     <div className="text-center py-6 text-gray-500">
                         No Transactions Yet
                     </div>

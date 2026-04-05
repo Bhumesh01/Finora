@@ -1,1 +1,39 @@
 @import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,400&family=Inter:wght@400;500&display=swap');
+
+@theme {
+    --bg-light:             #ffffff;
+    --bg-light-card:        #eef2ff;
+    --bg-light-muted:       #e0e7ff;
+
+    --bg-dark:              #0c0f16;
+    --bg-dark-surface:      #131720;
+    --bg-dark-raised:       #1a2030;
+
+    --accent-blue:          #2563eb;
+    --accent-blue-hover:    #1d4ed8;
+
+    --accent-indigo:        #818cf8;
+    --accent-indigo-hover:  #a5b4fc;
+
+    --accent-sky:           #38bdf8;
+    --accent-emerald:       #34d399;
+
+    --text-light:           #0c0f16;
+    --text-light-muted:     #374151;
+    --text-light-subtle:    #6b7280;
+
+    --text-dark:            #eef2ff;
+    --text-dark-muted:      #94a3b8;
+    --text-dark-subtle:     #64748b;
+
+    --border-light:         #c7d2fe;
+    --border-dark:          #1e2538;
+}
+
+body {
+  font-family: 'Playfair+Display';
+}
