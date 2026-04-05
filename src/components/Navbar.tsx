@@ -1,11 +1,13 @@
-import ModeLogo from "../assets/mode_logo.png"
-
+import toggleOffLogo from "../assets/toggleOff.svg"
+import toggleOnLogo from "../assets/toggleOn.svg"
 export default function Navbar(props:{
-    setIsAdmin: React.Dispatch<React.SetStateAction<boolean>>
+    setIsAdmin: React.Dispatch<React.SetStateAction<boolean>>,
+    setTheme: React.Dispatch<React.SetStateAction<"light"|"dark">>,
+    theme: "dark"|"light"
 }){
     return(
-        <div className="flex justify-between items-center py-4 px-6 bg-white shadow-md">
-            <h1 className="text-3xl font-bold text-gray-800 tracking-wide">Finora</h1>
+        <div className="flex justify-between items-center py-4 px-6 dark:bg-bg-dark dark:text-text-dark bg-white shadow-md dark:shadow-bg-dark-card">
+            <h1 className="text-5xl font-bold dark:bg-bg-dark  tracking-wide ">Finora</h1>
             <div className="flex items-center gap-4">
                 <select onChange={(e)=>{
                     let val = e.target.value;
@@ -15,12 +17,20 @@ export default function Navbar(props:{
                     else{
                         props.setIsAdmin(false);
                     }
-                }} className="bg-blue-500 hover:bg-blue-600 transition-all text-white px-4 py-2 rounded-xl font-medium outline-none cursor-pointer">
+                }} className="bg-accent-blue hover:bg-accent-blue-hover transition-all text-white px-4 py-2 rounded-xl font-medium outline-none cursor-pointer text-center dark:bg-accent dark:hover:bg-accent-hover">
                     <option>Role: Admin</option>
                     <option>Role: Viewer</option>
                 </select>
-                <div className="p-2 rounded-full hover:bg-gray-100 cursor-pointer transition">
-                    <img width="28" src={ModeLogo} alt="Switch Mode Logo" className="hover:scale-110 transition-transform"/>
+                <div onClick={()=>{
+                    const theme = localStorage.getItem("theme");
+                    if(theme === "light"){
+                        props.setTheme("dark");
+                    }
+                    else if(theme === "dark"){
+                        props.setTheme("light")
+                    }
+                }} className="p-2 rounded-full bg-bg-light hover:bg-gray-100 cursor-pointer transition">
+                    <img width="40" src={props.theme==="light"?toggleOffLogo:toggleOnLogo} alt="Switch Mode Logo" className="hover:scale-110 transition-transform"/>
                 </div>
 
             </div>

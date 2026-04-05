@@ -38,17 +38,17 @@ export default function LogCard(props:{
         });
     }
     return(
-        <div className="px-2 py-2 flex flex-col rounded-2xl border border-gray-400 gap-5 justify-center mx-10">
+        <div className="px-2 py-2 flex flex-col rounded-2xl border border-border-light dark:border-border-dark gap-5 justify-center mx-10 dark:bg-bg-dark-card mb-10">
             {modal&&<Modal setTransactions={setTransactions} setModal={setModal} transactions={transactions}></Modal>}
-            <h1 className="text-2xl font-semibold">Recent Transactions</h1>
+            <h1 className="text-3xl font-medium">Recent Transactions</h1>
             <div className="flex justify-between mt-2">
                 <div className="flex gap-5">
-                    <select onChange={(e) => setTypeFilter(e.target.value)} className="px-4 py-2 rounded-xl font-medium outline-none cursor-pointer border border-gray-400">
+                    <select onChange={(e) => setTypeFilter(e.target.value)} className="px-4 py-2 rounded-xl font-medium outline-none cursor-pointer border border-border-light dark:border-border-dark dark:bg-bg-dark-surface">
                         <option>All</option>
                         <option>Income</option>
                         <option>Expense</option>
                     </select>
-                    <select onChange={(e) => setCategoryFilter(e.target.value)} className="px-4 py-2 rounded-xl font-medium outline-none cursor-pointer border border-gray-400">
+                    <select onChange={(e) => setCategoryFilter(e.target.value)} className="px-4 py-2 rounded-xl font-medium outline-none cursor-pointer border border-border-light dark:border-border-dark dark:bg-bg-dark-surface">
                         <option>All Categories</option>
                         <option>Salary</option>
                         <option>Groceries</option>
@@ -57,20 +57,20 @@ export default function LogCard(props:{
                         <option>Food</option>
                         <option>Others</option>
                     </select>
-                    <select onChange={(e) => setTimeFilter(e.target.value)} className="px-4 py-2 rounded-xl font-medium outline-none cursor-pointer border border-gray-400">
+                    <select onChange={(e) => setTimeFilter(e.target.value)} className="px-4 py-2 rounded-xl font-medium outline-none cursor-pointer border border-border-light dark:border-border-dark dark:bg-bg-dark-surface">
                         <option>All Time</option>
                         <option>This Month</option>
                         <option>Last 7 Days</option>
                     </select>
                     {props.admin&&(
-                        <button className="bg-blue-500 hover:bg-blue-600 transition-all text-white px-4 py-2 rounded-xl font-medium outline-none cursor-pointer" onClick={()=>setModal(true)}>
+                        <button className="bg-accent-blue hover:bg-accent-blue-hover dark:bg-accent dark:hover:bg-accent-hover transition-all text-white px-4 py-2 rounded-xl font-medium outline-none cursor-pointer" onClick={()=>setModal(true)}>
                             Add Transaction
                         </button>
                     )}
                 </div>
             </div>
             <div className="rounded-xl overflow-hidden border border-gray-500">
-                <div className="grid grid-cols-4 bg-gray-100 text-gray-600 font-semibold px-4 py-3 border-b border-gray-400">
+                <div className="grid grid-cols-4 bg-accent-sky dark:bg-gray-950 dark:text-text-dark text-xl text-text-light font-medium px-4 py-3 border-b border-border-light dark:border-border-dark">
                         <div>Date</div>
                         <div>Category</div>
                         <div>Amount</div>
@@ -82,7 +82,7 @@ export default function LogCard(props:{
                     </div>
                 ):(
                     filtered.map((t, index)=>(
-                    <div key={index} className="w-full grid grid-cols-4 border border-gray-400 px-2 py-3">
+                    <div key={index} className="bg-accent-sky/20 w-full grid grid-cols-4 border border-border-light dark:bg-bg-dark-surface dark:border-border-dark px-2 py-3">
                         <div>{t.date}</div>
                         <div>{t.category}</div>
                         <div>{t.amount}</div>

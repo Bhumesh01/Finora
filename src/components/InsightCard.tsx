@@ -36,7 +36,7 @@ export default function InsightCard(props:{transactions:TransactionType[]}){
         <div className="flex justify-between px-5 my-5 flex-wrap gap-5">
             <Card label={`${monthName} Income`}  color="red" amount={`₹ ${income}`}></Card>
             <Card label={`${monthName} Balance`}  color="blue" amount={`₹ ${balance}`}></Card>
-            <Card label={`${monthName} Expenses`}  color="yellow" amount={`₹ ${expenses}`}></Card>
+            <Card label={`${monthName} Expenses`}  color="purple" amount={`₹ ${expenses}`}></Card>
           </div>
     )
 }

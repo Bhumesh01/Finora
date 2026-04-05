@@ -13,7 +13,7 @@ export default function Chart( props: {transactions: TransactionType[]}){
   const sorted = [...transactions].sort(
     (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
   );
-
+  
   let runningBalance = 0;
   let runningExpense = 0;
 
@@ -92,15 +92,15 @@ export default function Chart( props: {transactions: TransactionType[]}){
     ]
   };
     return(
-        <div className="flex flex-wrap justify-between gap-6 w-full px-5">
-            <div className="bg-white rounded-xl shadow p-4 flex-1">
+        <div className="flex flex-wrap gap-6 w-full p-4 rounded-2xl">
+            <div className="flex-1 min-w-75 bg-white dark:bg-bg-dark-surface rounded-xl shadow shadow-bg-light-muted p-4">
               <h2 className="text-lg font-semibold mb-2 text-center">Balance Trend</h2>
               <div className="h-62.5 flex items-center justify-center">
                 <Line data={data1} />
               </div>
             </div>
 
-            <div className="bg-white rounded-xl shadow p-4 flex-1">
+            <div className="flex-1 min-w-75 bg-white dark:bg-bg-dark-surface rounded-xl shadow shadow-bg-light-muted p-4">
               <h2 className="text-lg font-semibold mb-2 text-center">Expense Breakdown</h2>
               <div className="h-62.5 flex items-center justify-center">
                 <Pie data={data2}/>

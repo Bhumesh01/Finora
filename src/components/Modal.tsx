@@ -37,9 +37,9 @@ export default function Modal(props: ModalInterface){
     }
     return(
         <div className="fixed inset-0 flex items-center justify-center z-50">
-            <div className="absolute inset-0 bg-white/30 backdrop-blur-sm"></div>
+            <div className="absolute inset-0 bg-white/30 transition dark:bg-black/30 backdrop-blur-sm"></div>
             <div className="relative z-10 w-100 p-6 rounded-2xl 
-                bg-white/20 backdrop-blur-lg border border-white/30 
+                bg-white/20 transition dark:bg-black/80 backdrop-blur-lg border border-white/30 
                 shadow-xl flex flex-col gap-2">
                     {message&&<div className="text-green-500 text-center bg-green-100 rounded-2xl py-2 ">{message}</div>}
                 <div className="flex justify-end font-semibold">
@@ -48,11 +48,11 @@ export default function Modal(props: ModalInterface){
                 <h1 className="font-semibold text-2xl text-center mb-5">Please Enter the Details: </h1>
                 <div className="flex justify-start gap-5">
                     <h1 className="font-medium text-lg">Date: </h1>
-                    <input ref={dateRef} type="date"></input>
+                    <input ref={dateRef} className=" border dark:border-border-dark dark:bg-bg-dark-card rounded-md p-1" type="date"></input>
                 </div>
                 <div className="flex justify-start gap-5">
                     <h1 className="font-medium text-lg">Category: </h1>
-                    <select ref={categoryRef} className="px-2 py-1 rounded-md bg-white/30 border border-white/30 outline-none">
+                    <select ref={categoryRef} className="px-2 py-1 rounded-md dark:bg-bg-dark-surface dark:border-border-dark dark:text-text-dark bg-white/30 border border-white/30 outline-none">
                         <option>Salary</option>
                         <option>Groceries</option>
                         <option>Rent</option>
@@ -64,11 +64,11 @@ export default function Modal(props: ModalInterface){
                 </div>
                 <div className="flex justify-start gap-5">
                     <h1 className="font-medium text-lg">Amount: </h1>
-                    <input ref={amountRef} type="number" className="px-2 py-1 rounded-md bg-white/30 border border-white/30 outline-none" min={0} defaultValue={0}></input>
+                    <input ref={amountRef} type="number" className="px-2 py-1 rounded-md dark:bg-bg-dark-surface dark:border-border-dark dark:text-text-dark bg-white/30 border border-white/30 outline-none" min={0} defaultValue={0}></input>
                 </div>
                 <div className="flex justify-start gap-5">
                     <h1 className="font-medium text-lg">Type: </h1>
-                    <select ref={typeRef} className="px-2 py-1 rounded-md bg-white/30 border border-white/30 outline-none">
+                    <select ref={typeRef} className="px-2 py-1 rounded-md dark:bg-bg-dark-surface dark:border-border-dark dark:text-text-dark bg-white/30 border border-white/30 outline-none">
                         <option>Income</option>
                         <option>Expense</option>
                     </select>
@@ -78,7 +78,7 @@ export default function Modal(props: ModalInterface){
                         {error}
                     </div>
                 )}
-                <button className="bg-blue-500 hover:bg-blue-600 transition-all text-white px-4 py-2 rounded-xl font-medium outline-none cursor-pointer" onClick={add}>
+                <button className="bg-blue-500 hover:bg-blue-600 dark:bg-accent dark:hover:bg-accent-hover transition-all text-white px-4 py-2 rounded-xl font-medium outline-none cursor-pointer" onClick={add}>
                         Add Transaction
                     </button>
             </div>

@@ -15,7 +15,8 @@ export type TransactionType = {
 function App() {
   const [transactions, setTransactions] = useState<TransactionType[]>([]);
   const [loaded, setLoaded] = useState<boolean>(false);
-  const [admin, setIsAdmin] = useState<boolean>(false);
+  const [admin, setIsAdmin] = useState<boolean>(true);
+  const [theme, setTheme] = useState<"dark"|"light">("light");
 
   useEffect(()=>{
     try {
@@ -39,10 +40,29 @@ function App() {
     if (!loaded) return;
     localStorage.setItem("transactions", JSON.stringify(transactions));
   }, [transactions, loaded]);
+  useEffect(() => {
+    const root = document.documentElement;
+
+    if (theme === "dark") {
+      root.classList.add("dark");
+    } else {
+      root.classList.remove("dark");
+    }
+  }, [theme]);
+  useEffect(() => {
+    const saved = localStorage.getItem("theme") as "light" | "dark" | null;
+    if (saved) setTheme(saved);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+  }, [theme]);
   return (
-    <div className="h-screen flex flex-col gap-2">
-      <Navbar setIsAdmin={setIsAdmin}></Navbar>
-      <InsightCard transactions={transactions}></InsightCard>
+    <div className="max-h-fit flex flex-col gap-2 bg-bg-light dark:bg-bg-dark dark:text-text-dark transition duration-105">
+      <Navbar theme={theme} setTheme={setTheme} setIsAdmin={setIsAdmin}></Navbar>
+      <div className="mx-5">
+        <InsightCard transactions={transactions}></InsightCard>
+      </div>
       <Chart transactions={transactions}></Chart>
       <LogCard transactions={transactions} setTransactions={setTransactions} admin={admin}></LogCard>
     </div>
