@@ -58,6 +58,7 @@ export default function Modal(props: ModalInterface){
                         <option>Rent</option>
                         <option>Travel</option>
                         <option>Health</option>
+                        <option>Food</option>
                         <option>Others</option>
                     </select>
                 </div>
