@@ -14,6 +14,7 @@ export type TransactionType = {
 
 function App() {
   const [transactions, setTransactions] = useState<TransactionType[]>([]);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(()=>{
     try {
@@ -28,15 +29,20 @@ function App() {
     } catch (err) {
         console.error("Parsing error:", err);
         setTransactions([]);
-    }}, []);
+    }
+    finally{
+      setLoaded(true);
+    }
+  }, []);
   useEffect(() => {
+    if (!loaded) return;
     localStorage.setItem("transactions", JSON.stringify(transactions));
-  }, [transactions]);
+  }, [transactions, loaded]);
   return (
     <div className="h-screen flex flex-col gap-2">
       <Navbar></Navbar>
       <InsightCard transactions={transactions}></InsightCard>
-      <Chart></Chart>
+      <Chart transactions={transactions}></Chart>
       <LogCard transactions={transactions} setTransactions={setTransactions}></LogCard>
     </div>
   )

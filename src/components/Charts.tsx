@@ -3,38 +3,91 @@ import { Chart as ChartJS, LineElement, ArcElement, CategoryScale, LinearScale, 
 ChartJS.register( LineElement, ArcElement, CategoryScale, LinearScale, PointElement, Tooltip, Legend);
 
 import { Line, Pie } from "react-chartjs-2";
+import type{ TransactionType } from "../App";
 
-const data1 = {
-  labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
-  datasets: [
-    {
-      label: "Balance",
-      data: [25000, 40000, 42000, 58000, 50000, 70000],
-      borderColor: "#3b82f6",
-      backgroundColor: "rgba(59,130,246,0.2)",
-      tension: 0.4, // smooth curve
-      fill: true
-    }
-  ]
-};
+export default function Chart( props: {transactions: TransactionType[]}){
+  const transactions = props.transactions;
+  const sorted = [...transactions].sort(
+    (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+  );
 
-const data2 = {
-  labels: ["Food", "Rent", "Shopping", "Travel", "Other"],
-  datasets: [
-    {
-      data: [35, 25, 15, 20, 5],
-      backgroundColor: [
-        "#3b82f6",
-        "#ef4444",
-        "#22c55e",
-        "#f59e0b",
-        "#6b7280"
-      ]
-    }
-  ]
-};
+  let runningBalance = 0;
+  let runningExpense = 0;
 
-export default function Chart(){
+  const labels: string[] = [];
+  const balanceData: number[] = [];
+  const expenseData: number[] = [];
+
+  sorted.forEach(t => {
+      const amount = Number(t.amount.replace("₹ ", ""));
+
+      if (t.type === "Income") {
+          runningBalance += amount;
+      } else {
+          runningBalance -= amount;
+          runningExpense += amount;
+      }
+
+      labels.push(
+          new Date(t.date).toLocaleDateString("en-IN", {
+              day: "2-digit",
+              month: "short"
+          })
+      );
+
+      balanceData.push(runningBalance);
+      expenseData.push(runningExpense);
+  });
+  const data1 = {
+    labels,
+    datasets: [
+      {
+        label: "Balance",
+        data: balanceData,
+        borderColor: "#3b82f6",
+        backgroundColor: "rgba(59,130,246,0.2)",
+        tension: 0.4,
+        fill: true
+      },
+      {
+        label: "Expenses",
+        data: expenseData,
+        borderColor: "#ef4444",
+        backgroundColor: "rgba(239,68,68,0.2)",
+        tension: 0.4,
+        fill: true
+      }
+    ]
+  };
+  const categoryData: { [key: string]: number } = {};
+
+  transactions.forEach(t => {
+      if (t.type === "Expense") {
+          const amount = Number(t.amount.replace("₹ ", ""));
+
+          if (!categoryData[t.category]) {
+              categoryData[t.category] = 0;
+          }
+
+          categoryData[t.category] += amount;
+      }
+  });
+
+  const data2 = {
+    labels: Object.keys(categoryData),
+    datasets: [
+      {
+        data: Object.values(categoryData),
+        backgroundColor: [
+          "#3b82f6",
+          "#ef4444",
+          "#22c55e",
+          "#f59e0b",
+          "#6b7280"
+        ]
+      }
+    ]
+  };
     return(
         <div className="flex flex-wrap justify-between gap-6 w-full px-5">
             <div className="bg-white rounded-xl shadow p-4 flex-1">
