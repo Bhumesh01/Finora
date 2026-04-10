@@ -71,10 +71,10 @@ export default function LogCard(props:{
             </div>
             <div className="rounded-xl overflow-hidden border border-gray-500">
                 <div className="grid grid-cols-4 bg-accent-sky dark:bg-gray-950 dark:text-text-dark text-xl text-text-light font-medium px-4 py-3 border-b border-border-light dark:border-border-dark">
-                        <div>Date</div>
-                        <div>Category</div>
-                        <div>Amount</div>
-                        <div>Type</div>
+                        <div className="min-w-0 wrap-break-word whitespace-normal">Date</div>
+                        <div className="min-w-0 wrap-break-word whitespace-normal">Category</div>
+                        <div className="min-w-0 wrap-break-word whitespace-normal">Amount</div>
+                        <div className="min-w-0 wrap-break-word whitespace-normal">Type</div>
                     </div>
                 {filtered.length===0?(
                     <div className="text-center py-6 text-gray-500">
@@ -83,10 +83,10 @@ export default function LogCard(props:{
                 ):(
                     filtered.map((t, index)=>(
                     <div key={index} className="bg-accent-sky/20 w-full grid grid-cols-4 border border-border-light dark:bg-bg-dark-surface dark:border-border-dark px-2 py-3">
-                        <div>{t.date}</div>
-                        <div>{t.category}</div>
-                        <div>{t.amount}</div>
-                        <div>{t.type}</div>
+                        <div className="min-w-0 wrap-break-word whitespace-normal">{t.date}</div>
+                        <div className="min-w-0 wrap-break-word whitespace-normal">{t.category}</div>
+                        <div className="min-w-0 wrap-break-word whitespace-normal">{t.amount}</div>
+                        <div className="min-w-0 wrap-break-word whitespace-normal">{t.type}</div>
                     </div>
                 ))
                 )
