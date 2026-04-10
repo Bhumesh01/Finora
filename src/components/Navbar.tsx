@@ -8,7 +8,7 @@ export default function Navbar(props:{
     theme: "dark"|"light"
 }){
     return(
-        <div className="flex justify-between items-center py-4 px-6 dark:bg-bg-dark bg-white shadow-md dark:shadow-bg-dark-card">
+        <div className="flex justify-between items-center py-4 px-6 dark:bg-bg-dark bg-white shadow-md dark:shadow-bg-dark-card flex-wrap">
             <div className="flex justify-around items-center gap-2">
                 {props.theme==="dark"?(<div>
                 <img src={darkThemeLogo}></img>
@@ -36,7 +36,7 @@ export default function Navbar(props:{
                     else if(theme === "dark"){
                         props.setTheme("light")
                     }
-                }} className="p-2 rounded-full bg-bg-light hover:bg-gray-100 cursor-pointer transition">
+                }} className="p-2 rounded-full dark:bg-accent dark:hover:bg-accent-hover hover:bg-accent-blue-hover bg-accent-blue cursor-pointer transition">
                     <img width="40" src={props.theme==="light"?toggleOffLogo:toggleOnLogo} alt="Switch Mode Logo" className="hover:scale-110 transition-transform"/>
                 </div>
 
