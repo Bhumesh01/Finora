@@ -42,7 +42,7 @@ export default function LogCard(props:{
             {modal&&<Modal setTransactions={setTransactions} setModal={setModal} transactions={transactions}></Modal>}
             <h1 className="text-3xl font-medium">Recent Transactions</h1>
             <div className="flex justify-between mt-2">
-                <div className="flex gap-5">
+                <div className="flex gap-5 flex-wrap">
                     <select onChange={(e) => setTypeFilter(e.target.value)} className="px-4 py-2 rounded-xl font-medium outline-none cursor-pointer border border-border-light dark:border-border-dark dark:bg-bg-dark-surface">
                         <option>All</option>
                         <option>Income</option>
