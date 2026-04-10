@@ -11,8 +11,8 @@ export default function Navbar(props:{
         <div className="flex justify-between items-center py-4 px-6 dark:bg-bg-dark bg-white shadow-md dark:shadow-bg-dark-card flex-wrap">
             <div className="flex justify-around items-center gap-2">
                 {props.theme==="dark"?(<div>
-                <img src={darkThemeLogo}></img>
-                </div>):(<div><img src={lighyThemeLogo}></img></div>)}
+                <img width={35} height={35} src={darkThemeLogo}></img>
+                </div>):(<div><img width={35} height={35}  src={lighyThemeLogo}></img></div>)}
                 <h1 className="text-5xl font-bold dark:bg-bg-dark text-text-light tracking-wide dark:text-text-dark">Finora</h1>
             </div>
             <div className="flex items-center gap-4">
